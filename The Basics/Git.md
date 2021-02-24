@@ -7,7 +7,10 @@
 
 * [클라이언트-서버 시스템](https://ko.wikipedia.org/wiki/클라이언트-서버)과는 달리, 네트워크 접속이나 중앙 서버와 독립적으로 동작하는 완전한 이력 및 버전 추적 기능을 가짐
 
+* 중앙 집중식 버전 관리 시스템과 분산 버전 관리 시스템
 
+![Centeralized](https://homes.cs.washington.edu/~mernst/advice/version-control-fig2.png) vs ![Distribued](https://homes.cs.washington.edu/~mernst/advice/version-control-fig3.png)
+이미지 출처 : [Version control concepts and best practices](https://homes.cs.washington.edu/~mernst/advice/version-control.html)
 
 ## 작동 방식
 
