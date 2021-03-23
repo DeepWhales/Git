@@ -1,4 +1,8 @@
-# Git 교과서
+# Git 명령어 정리
+
+## References
+
+* [Git 교과서](http://www.kyobobook.co.kr/product/detailViewKor.laf?mallGb=KOR&ejkGb=KOR&barcode=9791165210885)
 
 ## Git 명령어
 
@@ -116,9 +120,9 @@ $ git remote rm
 $ git merge <remote-alias>/<branch-name>
 ```
 
-## Work Flow
+#### Work Flow
 
-### State
+##### State
 
 * 'Push' 는 서버의 마지막 'Commit' 과 Push 되는 'Commit' 을 병합함
 
@@ -130,7 +134,7 @@ $ git merge <remote-alias>/<branch-name>
 * Push 동작을 거부하면, Pull 또는 Fetch 로 자신의 로컬 저장소를 갱신해야 함
 * 갱신 후에 다시 Push 할 수 있음
 
-### Conflict
+##### Conflict
 
 * Git 이 최신 상태에서만 Push 를 허용하는 것음 충돌을 방지하기 위함임
 * Pull 작업은 내려받은 Commit 들을 현재 Branch 로 자동 병합함
@@ -141,6 +145,24 @@ $ git merge <remote-alias>/<branch-name>
 
 * 권장 순서 : Pull > Coding > Commit > Pull > Push
 
+### `git branch`
+
+* Branch 는 가상의 작업 디렉토리, 공통된 Commit 을 가리키는 지점, SHA1 Hash 키를 가리킴
+* 보통 Branch 를 생성하면 현재 Commit 을 가리키는 HEAD 를 기준으로 생성됨
+* 기본 Branch 외에 새로 생성하려면 직접 `branch` 명령을 사용해야 함
+
+```
+$ git branch
+```
+
+* 생성한 모든 Branch 출력
+
+```
+$ git branch <branch-name> <commit-id>
+```
+
+* `<branch-name>` 만 입력하면 현재 HEAD 를 기준으로 새로운 Branch 생성
+* `<commit-id>` 를 입력하면 지정한 Commit 을 기준으로 Branch 생성
 
 
 
