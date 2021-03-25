@@ -193,7 +193,72 @@ $ git branch --no-merged
 
 ### `git rebase`
 
+#### Rebase 
+
 * Commit 순서를 재배열함
+* Base : 새로운 Branch 가 파생되는 Commit - 공통 조상 Commit
+* Rebase : 파생된 Branch 의 기준이 되는 Base Commit 을 변경한다는 의미
+* Rebase 를 하는 이유
+    - 복잡한 Branch 들로 이루어진 수많은 경로는 진행 상황을 파악하기 어렵게 함
+    - Commit 진행 상황을 쉽게 파악할 수 있도록 단순화하기 위해 Rebase 를 함
+
+#### 병합 (Merge) vs 리베이스 (Rebase)
+
+* Merge 는 두 Branch 의 Commit 을 순차적으로 비교해서 최종 Commit 을 생성함
+* Rebase 는 두 Branch 를 서로 비교하지 않고 순차적으로 Commit 병합을 시도함
+
+* 결과
+    1. 병합은 3-Way 병합의 경우 병합 Commit 이 있지만, Rebase 는 병합 Commit 이 없음
+    2. Rebase 는 Branch 들 간의 HEAD 위치가 서로 다름 
+
+* Rebase 는 병합되는 방향이 `merge` 명령과 반대임
+    - 결국 Branch 가 가리키는 포인터 위치의 변경을 의미함
+    - 그러므로 병합을 하는 Branch 로 가서 Rebase 를 해야 함
+
+```
+$ git rebase <base-branch>
+```
+
+* Rebase 명령을 실행하면 파생 Branch 의 Commit 들은 기준 Branch 의 마지막 Commit 으로 재정렬됨
+* Rebase 는 기존 Commit 의 Hash 값을 변경함 : 포인터 위치가 변경되면서 기존 Commit 이 새 Commit 으로 대체되는 개념
+* Rebase 는 Commit 위치를 재조정할 뿐 Branch 의 HEAD 포인터까지 옮기지는 않음
+
+```
+$ git checkout main
+$ git merge <rebased-branch>
+```
+
+* 위와 같이 Rebase 를 실행한 Branch 를 다시 병합해야 함
+
+```
+$ git rebase --continue
+```
+
+* Rebase 과정에서의 충돌을 해결한 후 위와 같이 `rebase` 와 `--continue` 옵션을 같이 사용함
+
+```
+$ git rebase --abort
+```
+
+* Rebase 를 취소하는 옵션
+
+```
+$ git rebase -i <HEAD~3>
+```
+
+* `-i` 옵션을 사용하면 여러 개의 Commit 들을 하나로 묶을 수 있음
+* 위에서 `<HEAD~3>` 은 HEAD 가 가리키는 곳으로부터 3 개의 Commit 들을 하나로 묶으라는 의미임
+
+#### Rebase 에서 주의할 점
+
+* Rebase 는 Commit 위치와 Hash 값을 변경함 : Rebase 는 외부로 코드를 공개하기 전에 Local 에서만 실행하는 것이 좋음
+* 저장소를 외부에 공개했다만 공개한 순간부터는 Rebase 를 사용하지 않는 것이 원칙임
+* 공개한 Commit 을 변경하려면 `revert` 를 사용하는 것이 더 좋음
+
+### 충돌 방지
+
+* 개발 과정에서 병합 충돌을 최소화하고 예방하려면, `main` Branch 내용을 자주 Pull 하여 병합하는 것이 좋음
+* 원격 저장소의 `main` Branch 를 모니터링하고, 변화된 부분을 즉시 반영하여 작업하면 충돌을 최소화하거나 예방할 수 있음
 
 
 
