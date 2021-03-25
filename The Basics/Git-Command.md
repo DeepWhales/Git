@@ -164,6 +164,39 @@ $ git branch <branch-name> <commit-id>
 * `<branch-name>` 만 입력하면 현재 HEAD 를 기준으로 새로운 Branch 생성
 * `<commit-id>` 를 입력하면 지정한 Commit 을 기준으로 Branch 생성
 
+### `git stash`
+
+### `git clean`
+
+### `git merge`
+
+* Fast-Forward 병합
+* 3-Way 병합
+
+```
+$ git branch -d <branch-name>
+```
+
+* 병합 후 불필요한 Branch 삭제
+
+```
+$ git branch --merged
+```
+
+* 병합을 완료한 Branch 만 보여줌 
+
+```
+$ git branch --no-merged
+```
+
+* 병합하지 않은 Branch 만 보여줌
+
+### `git rebase`
+
+* Commit 순서를 재배열함
+
+
+
 
 
 
