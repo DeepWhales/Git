@@ -278,6 +278,87 @@ $ git rest <option> <commit-id>
     2. `mixed` : 기본 옵션 상태
     3. `hard` : 실제 파일이 삭제된 상태로 복원, `mixed` 와의 차이점은 'Working 디렉토리' 임
 
+#### Commit 합치기
+
+* Reset 의 동작 원리를 이해하면, Commit 을 수정할 수 있음
+* `git reset --soft` 는 `HEAD` 를 해당 Commit 으로 이동하고, 원본 내용은 Stage 에 남겨둠
+* `git reset --soft HEAD~2` 로 2단계 전으로 Reset 하고, Commit 하면 두 Commit 을 합친 효과를 냄
+
+#### Stage Reset 하기
+
+```
+$ git rest <file-name>
+```
+
+* `reset` 명령 다음에 Commit ID 대신 '파일 이름' 을 사용하면 해당 파일이 Unstage 상태가 됨
+* 위 명령은 `git reset --mixed HEAD <file-name>` 의 줄임 형태임
+* `git reset <commit-id> <file-name>` 을 사용하면 'HEAD' 대신 Commit ID 로 Reset 함
+
+#### 작업 취소
+
+* 수정 작업을 완전히 취소하려면 Working Directory 와 Stage 영역을 모두 제거하고 마지막 Commit 상태로 되돌려야 함
+* `HEAD` 포인터는 가장 마지막의 Commit 을 가리킴
+
+```
+$ git reset --hard HEAD
+```
+
+* Reset 시점을 `HEAD` 기준으로 하면 해당 시점의 수정 작업을 삭제할 수 있음
+
+#### 병합 취소
+
+```
+$ git reset --merge HEAD~
+```
+
+* 바로 이전에 병합한 Commit 을 Reset 하여 취소
+
+### `git revert`
+
+* Reset : 기존 Commit 정보 삭제
+* Revert : 기존 Commit 을 남겨 두고 취소에 대한 새로운 Commit 생성
+
+```
+$ git revert HEAD 
+```
+
+* HEAND 포인터를 사용하여 직전 Commit 을 Revert 함
+
+```
+$ git revert <commit-id>
+```
+
+* Revert 는 한 번에 Commit 하나만 취소함, 여러 Commit 을 취소하려면 순차적으로 해야 함
+* 임의의 Commit 취소
+
+```
+$ git revert <commit-id .. commit-id>
+```
+
+* 범위 지정 연산자로 여러 Commit 을 Revert 함 : **위의 설명과 모순이라 확인 필요함**
+
+> 이론상 `git revert <commit-id .. HEAD>` 도 가능할 것 같은데 확인 필요함
+
+```
+$ git revert --manline <number> <commit-id>
+```
+
+* 병합 시점의 Commit ID 를 입력하면 해당 시점으로 Revert 하여 병합이 취소됨
+* Rebase 한 병합은 Revert 하기 힘듦 : Rebase 로 인하여 병합 이전의 공통 조상 Commit 을 찾기 어렵기 때문
+
+#### Reset 과 Revert
+
+* Reset 과 Revert 는 동작을 취소하고 과거로 돌아간다는 점에서 비슷함
+* 두 명령어를 분리한 것은 원격 저장소로 공유를 하고 있는지와 관련이 있음
+* 저장소를 외부에 공유했으면 특정 Commit 을 삭제하는 것은 위험 : 저장소의 Commit 기록이 깨질 수 있음
+* 외부로 공유한 저장소라면 Revert 를 사용하는 것이 좋음
+* 로컬에서 작업할 때는 Reset 사용 가능
+
+
+
+
+
+
 
 
 
