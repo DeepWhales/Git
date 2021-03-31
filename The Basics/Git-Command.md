@@ -103,6 +103,12 @@ $ git remote show
 $ git remote rm
 ```
 
+### `git log`
+
+```
+$ git log --oneline
+```
+
 ### `git push`
 
 ### `git clone`
@@ -255,11 +261,22 @@ $ git rebase -i <HEAD~3>
 * 저장소를 외부에 공개했다만 공개한 순간부터는 Rebase 를 사용하지 않는 것이 원칙임
 * 공개한 Commit 을 변경하려면 `revert` 를 사용하는 것이 더 좋음
 
-### 충돌 방지
+#### 충돌 방지
 
 * 개발 과정에서 병합 충돌을 최소화하고 예방하려면, `main` Branch 내용을 자주 Pull 하여 병합하는 것이 좋음
 * 원격 저장소의 `main` Branch 를 모니터링하고, 변화된 부분을 즉시 반영하여 작업하면 충돌을 최소화하거나 예방할 수 있음
 
+### `git reset`
+
+```
+$ git rest <option> <commit-id>
+```
+
+* 지정한 Commit 코드로 되돌아감
+* 옵션의 종류 : `--soft`, `--mixed`, `--hard`
+    1. `soft` : Stage 영역을 포함한 상태로 복원, `mixed` 와의 차이점은 'Stage 영역' 임
+    2. `mixed` : 기본 옵션 상태
+    3. `hard` : 실제 파일이 삭제된 상태로 복원, `mixed` 와의 차이점은 'Working 디렉토리' 임
 
 
 

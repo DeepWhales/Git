@@ -18,6 +18,9 @@
 * `.git` 숨김 폴더 : 모든 변경 내용이 저장되는 숨김 폴더 - `$ git init` 으로 생성할 수 있음
 * `.gitignore` 파일 : Git 으로 추적하지 않는 파일들을 관리하는 숨김 파일 - [GitHub](https://github.com/github/gitignore) 에서 제공하는 파일 사용 가능
 
+* Stage 영역 : Commit 을 '원자적 (atomic)' 으로 하는데 도움이 됨 - 변경 내용을 하나씩 'stage' 에 올려서 Commit 가능
+
+
 ### `.gitignore` 파일 추가
 
 `$ curl https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore > .gitignore`
