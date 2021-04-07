@@ -353,13 +353,3 @@ $ git revert --manline <number> <commit-id>
 * 저장소를 외부에 공유했으면 특정 Commit 을 삭제하는 것은 위험 : 저장소의 Commit 기록이 깨질 수 있음
 * 외부로 공유한 저장소라면 Revert 를 사용하는 것이 좋음
 * 로컬에서 작업할 때는 Reset 사용 가능
-
-
-
-
-
-
-
-
-
-
