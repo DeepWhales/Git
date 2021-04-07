@@ -354,7 +354,51 @@ $ git revert --manline <number> <commit-id>
 * 외부로 공유한 저장소라면 Revert 를 사용하는 것이 좋음
 * 로컬에서 작업할 때는 Reset 사용 가능
 
+### `git tag`
 
+### `git submodule`
+
+```
+$ git submodule add <remote-repo-url> <directory-name>
+```
+
+* 위 명령은 부모 저장소가 될 메인 저장소에서 실행함
+* 자식 저장소를 등록할 때는 자식 저장소와 연결된 원격 저장소 주소를 입력함
+* 부모 저장소에서 Submodule 을 등록하면 원격 저장소를 매개로 하여 자식 저장소를 복제함
+
+#### Submodule Commit
+
+* 메인 저장소가 자식 정보를 가지고 있으려면 이를 Commit 해서 저장해야 함
+* 사실 Submodule 환경 설정 파일인 `.gitmodules` 만 등록해서 Commit 하고, 복제한 자식 저장소는 Commit 하지 않음
+
+### 부모 저장소 Clone
+
+* 부모 저장소를 Clone 하면 Submodule 정보만 복제하며 자식 저장소는 같이 복제하지 않음
+* Submodule 의 저장소는 명령어로 직접 가져와야 함
+
+```
+$ cd child 
+
+$ git submodule init 
+$ git submodule update
+```
+
+* Submodule 의 `update` 옵션으로 관련된 자식 저장소를 복제함
+
+### 부모 저장소 Update
+
+* Submodule 로 구성한 부모, 자식 저장소 관계에서, 자식 저장소가 갱신되면 부모 저장소 설정 파일도 변경됨
+* 즉, 자식 저장소의 코드를 수정하고 Commit 하면, 부모 저장소에도 새로운 Commit 이 발생함
+* 부모 저장소를 정기적으로 Update 하여 Submodule 상태를 최신으로 유지해야 함
+
+```
+$ git pull origin main 
+
+$ git submodule update
+```
+
+* 부모 저장소를 Pull 했다고 해서 모든 자식 저장소를 자동으로 Update 하지 않음
+* 즉, Submodule 의 Update 는 위와 같이 별도로 명령을 실행해 줘야 함
 
 
 
